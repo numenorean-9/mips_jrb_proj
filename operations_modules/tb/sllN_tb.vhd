@@ -51,8 +51,12 @@ type test_array is array (natural range <>) of sll_tests;
 constant tests : test_array := (
     --input_A        shift_amt        out_y --
     (x"00000001",   x"00000005",    x"00000020"),
-    (x"00000001",   x"00000004",    x"00000010")
-
+    (x"00000001",   x"00000004",    x"00000010"),
+    (x"00000275",   x"00000008",    x"00027500"),
+    (x"80000000",   x"00000001",    x"00000000"),
+    (x"00000007",   x"00000002",    x"0000001C"),
+    (x"0FFFFFFF",   x"0000000F",    x"FFFF8000"),
+    (x"FFFFFFFF",   x"00000004",    x"FFFFFFF0")
 
 );
 
