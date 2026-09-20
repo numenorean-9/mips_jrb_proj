@@ -40,7 +40,7 @@ begin
     generate_shift_array: for i in 0 to N-1 generate
         arr(i)(N-1-i downto 0) <= input_A(N-1 downto i);
         sign_extnd : if i > 0 generate
-            arr(i)(N-1 downto i)
+            arr(i)(N-1 downto i) <= (others =>input_A(N-1));
         end generate;
     end generate;
     
