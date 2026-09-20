@@ -26,24 +26,23 @@ entity srarN is
         N : integer := 32
     );
     port(
-        input_A : std_logic_vector(N-1 downto 0);
-        shift_amt: std_logic_vector(N-1 downto 0);
-        out_Y : std_logic_vector(N-1 downto 0)
+        input_A : in std_logic_vector(N-1 downto 0);
+        shift_amt : in std_logic_vector(N-1 downto 0);
+        out_Y : out std_logic_vector(N-1 downto 0)
     );
 end entity;
 
 architecture behavioral of srarN is
-    type shift_array is array (natural range <>) of std_logic_vector(N-1 downto 0);
-    signal arr: shifty_array := (others => (others => '0'));
+    type shifty_array is array (N-1 downto 0) of std_logic_vector(N-1 downto 0);
+    signal arr : shifty_array := (others => (others => '0'));
 begin
 
     generate_shift_array: for i in 0 to N-1 generate
         arr(i)(N-1-i downto 0) <= input_A(N-1 downto i);
         sign_extnd : if i > 0 generate
-            arr(i)(N-1 downto i) <= (others =>input_A(N-1));
+            arr(i)(N-1 downto N-1-i) <= (others =>input_A(N-1));
         end generate;
     end generate;
     
     out_Y <= arr(to_integer(unsigned(shift_amt)));
-
 end behavioral;
